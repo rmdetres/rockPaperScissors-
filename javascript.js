@@ -21,56 +21,122 @@ function getComputerChoice() {
 
 
 function getHumanChoice(){
-    let humanChoice = prompt("What's your sign?")
-    return humanChoice;
+
+    let humanChoice = "";
+
+    const btnRock = document.querySelector("#btnRock");
+    btnRock.addEventListener("click", () => {humanChoice = "rock";
+    playTheGame(humanChoice);
+    });  
+    
+    const btnPaper = document.querySelector("#btnPaper");
+    btnPaper.addEventListener("click", () => { humanChoice = "paper";
+    playTheGame(humanChoice)
+    });
+
+
+    const btnScissors = document.querySelector("#btnScissors");
+    btnScissors.addEventListener("click", () => {
+    humanChoice = "scissors";
+    playTheGame(humanChoice);
+    });
+    
+}
+
+function keepHumanScore(){
+
+
+    
+    humanScore++;
+    
+
+}
+
+let humanScore = 0;
+let computerScore = 0;
+let roundCounter = 0;
+const roundDisplay = document.querySelector("#counter");
+
+
+function keepRoundScore(){
+    
+   
+
+    if(roundCounter>=5){
+        roundCounter = 0;
+        let displayCount = roundCounter.toString();
+        roundDisplay.textContent = displayCount;
+        alert("the game is over!");
+
+    }else {
+
+        roundCounter++;
+        let displayCount = roundCounter.toString();
+        roundDisplay.textContent = displayCount;
+    }
+
 }
 
 
 
 
 
-function playTheGame(){
-let humanScore = 0;
-let ComputerScore = 0;
+function keepComputerScore(){
+     computerScore++;
 
-    for(i = 0; i <5; i++){
+}
 
-    let humanChoice = getHumanChoice() 
+
+
+function playTheGame(x){
+
+
+    
+
+    let humanChoice = x;
     let computerchoice = getComputerChoice() 
 
     if (humanChoice === computerchoice){
          console.log("it was a tie");
+         keepRoundScore();
     } else if (humanChoice === "rock"){
         if (computerchoice === "paper"){
-            ComputerScore++
+            keepComputerScore();
+            keepRoundScore();
             console.log( "you choose rock the computer choose paper you lose!");
         } else if (computerchoice === "scissors"){
-            humanScore++
+            keepHumanScore();
+            keepRoundScore();
             console.log( "you choose rock the computer choose scissors you win!");
         }
     }else if (humanChoice === "paper"){
         if (computerchoice === "rock"){
-            humanScore++;
+            keepHumanScore();
+            keepRoundScore();
             console.log( "you choose paper the computer choose rock you win!");
     } if (computerchoice === "scissors"){
-        ComputerScore++;
+        keepComputerScore()
+        keepRoundScore();
         console.log( "you paper the computer chose scissors you lose!");
 }}
 else if(humanChoice === "scissors"){
     if(computerchoice === 'paper'){
-        humanScore++;
+        keepHumanScore();
+        keepRoundScore();
         console.log( "you choose scissors the computer chose paper,you win!");
     } if (computerchoice === "rock"){
-        ComputerScore++;
+        keepComputerScore();
+        keepRoundScore();
         console.log( "you choose scissors the computer choose rock you lose!");
     }
 }
 
-    console.log(`your score is ${humanScore} and the computer score is ${ComputerScore}`)
-    }
+    console.log(`your score is ${humanScore} and the computer score is ${computerScore}`)
+    
 
 
 }
 
 
-playTheGame();
+
+getHumanChoice();
