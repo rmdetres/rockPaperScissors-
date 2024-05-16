@@ -109,7 +109,7 @@ function keepRoundScore(){
 
             throw alert("the game is over!, you won!");
 
-        }if(humanScore = computerScore){
+        }if(humanScore === computerScore){
             humanScore = 0;
             computerScore = 0;
             let convertHumanScoreToString = humanScore.toString();
