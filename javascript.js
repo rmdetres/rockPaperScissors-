@@ -95,9 +95,8 @@ function keepRoundScore(){
         roundCounter = 0;
         let displayCount = roundCounter.toString();
         roundDisplay.textContent = displayCount;
-        
-
         winnerMessageDisplay.textContent = "Lets start the game";
+
         if(humanScore>computerScore){
 
             humanScore = 0;
@@ -109,6 +108,19 @@ function keepRoundScore(){
             displayHumanScore.textContent = convertHumanScoreToString;
 
             throw alert("the game is over!, you won!");
+
+        }if(humanScore = computerScore){
+            humanScore = 0;
+            computerScore = 0;
+            let convertHumanScoreToString = humanScore.toString();
+            let convertComputerScoreToString = computerScore.toString();
+
+            displayComputerScore.textContent = convertComputerScoreToString;
+            displayHumanScore.textContent = convertHumanScoreToString;
+
+            throw alert(" the game is over! It was a tie! ");
+
+
 
         }else{
 
@@ -155,37 +167,42 @@ function playTheGame(x){
          keepRoundScore();
     } else if (humanChoice === "rock"){
         if (computerchoice === "paper"){
-            keepComputerScore();
             keepRoundScore();
+            keepComputerScore();
+            
             winnerMessageDisplay.textContent = "you choose rock, the computer choose paper you lose!";
             console.log( "you choose rock the computer choose paper you lose!");
         } else if (computerchoice === "scissors"){
-            keepHumanScore();
             keepRoundScore();
+            keepHumanScore();
+            
             winnerMessageDisplay.textContent = "you choose rock, the computer choose scissors you win!";
             console.log( "you choose rock the computer choose scissors you win!");
         }
     }else if (humanChoice === "paper"){
         if (computerchoice === "rock"){
-            keepHumanScore();
             keepRoundScore();
+            keepHumanScore();
             winnerMessageDisplay.textContent = "you choose paper, the computer choose rock you win!";
             console.log( "you choose paper the computer choose rock you win!");
     } if (computerchoice === "scissors"){
-        keepComputerScore()
         keepRoundScore();
+        keepComputerScore()
+        
         winnerMessageDisplay.textContent ="you choose paper, the computer chose scissors you lose!";
         console.log( "you paper the computer chose scissors you lose!");
 }}
 else if(humanChoice === "scissors"){
     if(computerchoice === 'paper'){
-        keepHumanScore();
         keepRoundScore();
+        keepHumanScore();
+        
         winnerMessageDisplay.textContent = "you choose scissors, the computer chose paper,you win!";
         console.log( "you choose scissors the computer chose paper,you win!");
     } if (computerchoice === "rock"){
-        keepComputerScore();
         keepRoundScore();
+        keepComputerScore();
+        
         winnerMessageDisplay.textContent ="you choose scissors the computer choose rock you lose!";
         console.log( "you choose scissors the computer choose rock you lose!");
     }
