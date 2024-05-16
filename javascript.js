@@ -1,3 +1,17 @@
+//global variables
+let humanScore = 0;
+let computerScore = 0;
+let roundCounter = 0;
+const roundDisplay = document.querySelector("#counter");
+const winnerMessageDisplay = document.querySelector("#winnerMessage");
+const displayHumanScore = document.querySelector("#counterUser");
+const displayComputerScore = document.querySelector("#counterComputer");
+
+
+
+
+
+
 function getComputerChoice() {
 
     let computerchoice = " ";
@@ -43,37 +57,80 @@ function getHumanChoice(){
     
 }
 
+
+
+
+
+
+
 function keepHumanScore(){
 
 
     
     humanScore++;
+    let convertHumanScoreToString = humanScore.toString();
+    displayHumanScore.textContent = convertHumanScoreToString; //this updates the front end
     
 
 }
 
-let humanScore = 0;
-let computerScore = 0;
-let roundCounter = 0;
-const roundDisplay = document.querySelector("#counter");
+
+function keepComputerScore(){
+        computerScore++;
+       let convertComputerScoreToString = computerScore.toString();
+       displayComputerScore.textContent = convertComputerScoreToString; //this updates the front end
+    
+
+}
+
+
+
 
 
 function keepRoundScore(){
     
    
 
-    if(roundCounter>=5){
+    if(roundCounter>=5){     //this sets a 5 round limit and resets to zero after 5 rounds.
         roundCounter = 0;
         let displayCount = roundCounter.toString();
         roundDisplay.textContent = displayCount;
-        alert("the game is over!");
+        
 
-    }else {
+        winnerMessageDisplay.textContent = "Lets start the game";
+        if(humanScore>computerScore){
+
+            humanScore = 0;
+            computerScore = 0;
+            let convertHumanScoreToString = humanScore.toString();
+            let convertComputerScoreToString = computerScore.toString();
+
+            displayComputerScore.textContent = convertComputerScoreToString;
+            displayHumanScore.textContent = convertHumanScoreToString;
+
+            throw alert("the game is over!, you won!");
+
+        }else{
+
+            humanScore = 0;
+            computerScore = 0;
+            let convertHumanScoreToString = humanScore.toString();
+            let convertComputerScoreToString = computerScore.toString();
+
+            displayComputerScore.textContent = convertComputerScoreToString;
+            displayHumanScore.textContent = convertHumanScoreToString;
+            throw alert("the game is over!, you lose!");
+            }
+        
+
+
+    }else{
 
         roundCounter++;
         let displayCount = roundCounter.toString();
         roundDisplay.textContent = displayCount;
-    }
+        }
+    
 
 }
 
@@ -81,10 +138,6 @@ function keepRoundScore(){
 
 
 
-function keepComputerScore(){
-     computerScore++;
-
-}
 
 
 
@@ -98,35 +151,42 @@ function playTheGame(x){
 
     if (humanChoice === computerchoice){
          console.log("it was a tie");
+         winnerMessageDisplay.textContent = `it was a tie, you both choose ${humanChoice}`;
          keepRoundScore();
     } else if (humanChoice === "rock"){
         if (computerchoice === "paper"){
             keepComputerScore();
             keepRoundScore();
+            winnerMessageDisplay.textContent = "you choose rock, the computer choose paper you lose!";
             console.log( "you choose rock the computer choose paper you lose!");
         } else if (computerchoice === "scissors"){
             keepHumanScore();
             keepRoundScore();
+            winnerMessageDisplay.textContent = "you choose rock, the computer choose scissors you win!";
             console.log( "you choose rock the computer choose scissors you win!");
         }
     }else if (humanChoice === "paper"){
         if (computerchoice === "rock"){
             keepHumanScore();
             keepRoundScore();
+            winnerMessageDisplay.textContent = "you choose paper, the computer choose rock you win!";
             console.log( "you choose paper the computer choose rock you win!");
     } if (computerchoice === "scissors"){
         keepComputerScore()
         keepRoundScore();
+        winnerMessageDisplay.textContent ="you choose paper, the computer chose scissors you lose!";
         console.log( "you paper the computer chose scissors you lose!");
 }}
 else if(humanChoice === "scissors"){
     if(computerchoice === 'paper'){
         keepHumanScore();
         keepRoundScore();
+        winnerMessageDisplay.textContent = "you choose scissors, the computer chose paper,you win!";
         console.log( "you choose scissors the computer chose paper,you win!");
     } if (computerchoice === "rock"){
         keepComputerScore();
         keepRoundScore();
+        winnerMessageDisplay.textContent ="you choose scissors the computer choose rock you lose!";
         console.log( "you choose scissors the computer choose rock you lose!");
     }
 }
@@ -139,4 +199,4 @@ else if(humanChoice === "scissors"){
 
 
 
-getHumanChoice();
+getHumanChoice();  //the game is triggered when the user selects a choice.
